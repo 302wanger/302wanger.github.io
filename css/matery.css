@@ -602,7 +602,7 @@ header .go-back i {
   font-weight: 400;
 }
 
-@-webkit-keyframes rainbow {
+/* @-webkit-keyframes rainbow {
   0%,
   100% {
     background: rgba(156, 39, 176, 0.75);
@@ -717,9 +717,9 @@ header .go-back i {
       rgba(233, 30, 99, 0.65) 100%
     );
   }
-}
+} */
 
-@keyframes rainbow {
+/* @keyframes rainbow {
   0%,
   100% {
     background: rgba(156, 39, 176, 0.75);
@@ -834,7 +834,7 @@ header .go-back i {
       rgba(233, 30, 99, 0.65) 100%
     );
   }
-}
+} */
 
 .index-card {
   margin-top: -10px;
