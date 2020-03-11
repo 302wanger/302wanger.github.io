@@ -331,9 +331,81 @@
                 <h3 id="环境准备："><a href="#环境准备：" class="headerlink" title="环境准备："></a>环境准备：</h3><p>Python 2.7 or Python 3</p>
 <h3 id="需要安装的包"><a href="#需要安装的包" class="headerlink" title="需要安装的包"></a>需要安装的包</h3><p>pytesseract<br>pytesser<br>Pillow</p>
 <h3 id="达成目标"><a href="#达成目标" class="headerlink" title="达成目标"></a>达成目标</h3><p>比较两张图片是不是一个图片</p>
-<h3 id="如何运行"><a href="#如何运行" class="headerlink" title="如何运行"></a>如何运行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python file.py</span><br></pre></td></tr></table></figure>
+<h3 id="如何运行"><a href="#如何运行" class="headerlink" title="如何运行"></a>如何运行</h3><pre><code>python file.py</code></pre><h3 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h3><pre><code>#!C:/Python27 &amp; Python3  
+#coding=utf-8 
+# 1. pip install pillow
+# 2. pip install pytesseract
+# 3. pip install pytesser
+# Run: python comporePicture.py 
 
-<h3 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">#!C:&#x2F;Python27 &amp; Python3  </span><br><span class="line">#coding&#x3D;utf-8 </span><br><span class="line"># 1. pip install pillow</span><br><span class="line"># 2. pip install pytesseract</span><br><span class="line"># 3. pip install pytesser</span><br><span class="line"># Run: python comporePicture.py </span><br><span class="line"></span><br><span class="line">import pytesseract  </span><br><span class="line">from pytesser import *  </span><br><span class="line">from PIL import Image,ImageEnhance,ImageFilter  </span><br><span class="line">import os  </span><br><span class="line">import fnmatch  </span><br><span class="line">import re,time  </span><br><span class="line">  </span><br><span class="line">import urllib, random  </span><br><span class="line">  </span><br><span class="line">#import hashlib    </span><br><span class="line">   </span><br><span class="line">def getGray(image_file):  </span><br><span class="line">   tmpls&#x3D;[]  </span><br><span class="line">   for h in range(0,  image_file.size[1]):#h  </span><br><span class="line">      for w in range(0, image_file.size[0]):#w  </span><br><span class="line">         tmpls.append( image_file.getpixel((w,h))  )  </span><br><span class="line">            </span><br><span class="line">   return tmpls  </span><br><span class="line"></span><br><span class="line">#获取平均灰度值   </span><br><span class="line">def getAvg(ls): </span><br><span class="line">   return sum(ls)&#x2F;len(ls)  </span><br><span class="line"></span><br><span class="line">#比较100个字符有几个字符相同 </span><br><span class="line">def getMH(a,b):  </span><br><span class="line">   dist &#x3D; 0;  </span><br><span class="line">   for i in range(0,len(a)):  </span><br><span class="line">      if a[i]&#x3D;&#x3D;b[i]:  </span><br><span class="line">         dist&#x3D;dist+1  </span><br><span class="line">   return dist  </span><br><span class="line">   </span><br><span class="line">def getImgHash(fne):  </span><br><span class="line">   image_file &#x3D; Image.open(fne) # 打开  </span><br><span class="line">   image_file&#x3D;image_file.resize((12, 12))#重置图片大小我12px X 12px  </span><br><span class="line">   image_file&#x3D;image_file.convert(&quot;L&quot;)#转256灰度图  </span><br><span class="line">   Grayls&#x3D;getGray(image_file)#灰度集合  </span><br><span class="line">   avg&#x3D;getAvg(Grayls)#灰度平均值  </span><br><span class="line">   bitls&#x3D;&#39;&#39;#接收获取0或1  </span><br><span class="line">   #除去变宽1px遍历像素  </span><br><span class="line">   for h in range(1,  image_file.size[1]-1):#h  </span><br><span class="line">      for w in range(1, image_file.size[0]-1):#w  </span><br><span class="line">         if image_file.getpixel((w,h))&gt;&#x3D;avg:#像素的值比较平均值 大于记为1 小于记为0  </span><br><span class="line">            bitls&#x3D;bitls+&#39;1&#39;  </span><br><span class="line">         else:  </span><br><span class="line">            bitls&#x3D;bitls+&#39;0&#39;  </span><br><span class="line">   return bitls  </span><br><span class="line">&#39;&#39;&#39;&#39;&#39;          </span><br><span class="line">   m2 &#x3D; hashlib.md5()    </span><br><span class="line">   m2.update(bitls) </span><br><span class="line">   print m2.hexdigest(),bitls </span><br><span class="line">   return m2.hexdigest() </span><br><span class="line">&#39;&#39;&#39;  </span><br><span class="line"></span><br><span class="line">#图片地址自行替换</span><br><span class="line">bijiaotupian &#x3D; &quot;.&#x2F;&#x2F;picture&#x2F;&#x2F;kangshifu01.jpg&quot;</span><br><span class="line">openfile &#x3D; &quot;.&#x2F;&#x2F;picture&quot;</span><br><span class="line">a&#x3D;getImgHash(bijiaotupian)  </span><br><span class="line">#被打开的文件夹中的图片</span><br><span class="line">files &#x3D; os.listdir(openfile)#图片文件夹地址自行替换  </span><br><span class="line">for file in files:  </span><br><span class="line">   b&#x3D;getImgHash(&quot;.&#x2F;&#x2F;picture&#x2F;&#x2F;&quot;+str(file))  </span><br><span class="line">   compare&#x3D;getMH(a,b)  </span><br><span class="line">   print(file,u&#39;相似度&#39;,str(compare)+&#39;%&#39;)</span><br><span class="line">      </span><br><span class="line">#    if compare &gt;&#x3D; 90:</span><br><span class="line">#        print(file,u&#39;相似度&#39;,str(compare)+&#39;%&#39;)</span><br><span class="line">#    else:</span><br><span class="line">#        pass</span><br></pre></td></tr></table></figure>
+import pytesseract  
+from pytesser import *  
+from PIL import Image,ImageEnhance,ImageFilter  
+import os  
+import fnmatch  
+import re,time  
+
+import urllib, random  
+
+#import hashlib    
+
+def getGray(image_file):  
+   tmpls=[]  
+   for h in range(0,  image_file.size[1]):#h  
+      for w in range(0, image_file.size[0]):#w  
+         tmpls.append( image_file.getpixel((w,h))  )  
+
+   return tmpls  
+
+#获取平均灰度值   
+def getAvg(ls): 
+   return sum(ls)/len(ls)  
+
+#比较100个字符有几个字符相同 
+def getMH(a,b):  
+   dist = 0;  
+   for i in range(0,len(a)):  
+      if a[i]==b[i]:  
+         dist=dist+1  
+   return dist  
+
+def getImgHash(fne):  
+   image_file = Image.open(fne) # 打开  
+   image_file=image_file.resize((12, 12))#重置图片大小我12px X 12px  
+   image_file=image_file.convert(&quot;L&quot;)#转256灰度图  
+   Grayls=getGray(image_file)#灰度集合  
+   avg=getAvg(Grayls)#灰度平均值  
+   bitls=&#39;&#39;#接收获取0或1  
+   #除去变宽1px遍历像素  
+   for h in range(1,  image_file.size[1]-1):#h  
+      for w in range(1, image_file.size[0]-1):#w  
+         if image_file.getpixel((w,h))&gt;=avg:#像素的值比较平均值 大于记为1 小于记为0  
+            bitls=bitls+&#39;1&#39;  
+         else:  
+            bitls=bitls+&#39;0&#39;  
+   return bitls  
+&#39;&#39;&#39;&#39;&#39;          
+   m2 = hashlib.md5()    
+   m2.update(bitls) 
+   print m2.hexdigest(),bitls 
+   return m2.hexdigest() 
+&#39;&#39;&#39;  
+
+#图片地址自行替换
+bijiaotupian = &quot;.//picture//kangshifu01.jpg&quot;
+openfile = &quot;.//picture&quot;
+a=getImgHash(bijiaotupian)  
+#被打开的文件夹中的图片
+files = os.listdir(openfile)#图片文件夹地址自行替换  
+for file in files:  
+   b=getImgHash(&quot;.//picture//&quot;+str(file))  
+   compare=getMH(a,b)  
+   print(file,u&#39;相似度&#39;,str(compare)+&#39;%&#39;)
+
+#    if compare &gt;= 90:
+#        print(file,u&#39;相似度&#39;,str(compare)+&#39;%&#39;)
+#    else:
+#        pass</code></pre>
             </div>
             <hr/>
 
@@ -489,7 +561,10 @@
                     <div class="summary block-with-text">
                         
                             好玩的js数组数组去重
-12345678910function quChong(array) &#123;    var reuslt &#x3D; []    for (var i &#x3D; 0; i &lt; array.lengt
+function quChong(array) {
+    var reuslt = []
+    for (var i = 0; i &lt; array.length) {
+        var value =
                         
                     </div>
                     <div class="publish-info">

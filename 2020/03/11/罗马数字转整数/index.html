@@ -335,9 +335,27 @@
 <li>X可以放在L(50) 和C(100) 的左边，来表示 40 和90。</li>
 <li>C可以放在D(500) 和M(1000) 的左边，来表示400 和900。<br>给定一个罗马数字，将其转换成整数。输入确保在 1到 3999 的范围内。</li>
 </ul>
-<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">let romanObj &#x3D; &#123;</span><br><span class="line">	&#39;I&#39;: 1,</span><br><span class="line">    &#39;V&#39;: 5,</span><br><span class="line">    &#39;X&#39;: 10,</span><br><span class="line">    &#39;L&#39;: 50,</span><br><span class="line">    &#39;C&#39;: 100,</span><br><span class="line">    &#39;D&#39;: 500,</span><br><span class="line">    &#39;M&#39;: 1000</span><br><span class="line">&#125;</span><br><span class="line">let romanToInt &#x3D; function(s) &#123;</span><br><span class="line">	let max &#x3D; 0;</span><br><span class="line">	let result &#x3D; 0;</span><br><span class="line">	let sLength &#x3D; s.length - 1;</span><br><span class="line">	for (var i &#x3D; sLength; i &gt;&#x3D; 0; i--) &#123;</span><br><span class="line">		var currRoman &#x3D; s[i];</span><br><span class="line">		var currVal &#x3D; romanObj[currRoman];</span><br><span class="line">		result +&#x3D; currVal &gt; max ? currVal : -currVal;</span><br><span class="line">		max &#x3D; Math.max(max, currVal);</span><br><span class="line">&#125;</span><br><span class="line">	return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>罗马字符串自右向左是数值递增的，而一旦出现不符合规律的，就应该减去该值，即将当前值取负。<br>该方法的关键就在于此，max中保存的就相当于最右边值，currVal是左边值。</p>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><pre><code>let romanObj = {
+    &#39;I&#39;: 1,
+    &#39;V&#39;: 5,
+    &#39;X&#39;: 10,
+    &#39;L&#39;: 50,
+    &#39;C&#39;: 100,
+    &#39;D&#39;: 500,
+    &#39;M&#39;: 1000
+}
+let romanToInt = function(s) {
+    let max = 0;
+    let result = 0;
+    let sLength = s.length - 1;
+    for (var i = sLength; i &gt;= 0; i--) {
+        var currRoman = s[i];
+        var currVal = romanObj[currRoman];
+        result += currVal &gt; max ? currVal : -currVal;
+        max = Math.max(max, currVal);
+}
+    return result;
+}</code></pre><h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>罗马字符串自右向左是数值递增的，而一旦出现不符合规律的，就应该减去该值，即将当前值取负。<br>该方法的关键就在于此，max中保存的就相当于最右边值，currVal是左边值。</p>
 
             </div>
             <hr/>
@@ -456,7 +474,11 @@
                     <div class="summary block-with-text">
                         
                             三种实现阶乘的方法方法1
-123456789101112function factorialize(num) &#123;  &#x2F;&#x2F; 如果num小于1，则终止  if (num&lt;0) &#123;    return
+function factorialize(num) {
+  // 如果num小于1，则终止
+  if (num&lt;0) {
+    return -1;
+  } else if (num === 0 || n
                         
                     </div>
                     <div class="publish-info">
@@ -496,9 +518,7 @@
                             环境准备：Python 2.7 or Python 3
 需要安装的包pytesseractpytesserPillow
 达成目标比较两张图片是不是一个图片
-如何运行1python file.py
-
-代码如下12345678910111213
+如何运行python file.py代码如下#!C:/Python27 &amp; 
                         
                     </div>
                     <div class="publish-info">
