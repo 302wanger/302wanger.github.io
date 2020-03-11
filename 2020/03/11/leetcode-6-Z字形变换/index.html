@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="my first article, 302wanger">
+    <meta name="keywords" content="leetcode-7-Z字形变换, 302wanger">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>my first article | 302wanger</title>
+    <title>leetcode-7-Z字形变换 | 302wanger</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -177,12 +177,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">my first article</h1>
+                    <h1 class="description center-align post-title">leetcode-7-Z字形变换</h1>
                 </div>
             </div>
         </div>
@@ -311,7 +311,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-03-09
+                    2020-03-11
                 </div>
                 
 
@@ -328,7 +328,33 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>我是 first article</p>
+                <h2 id="一：题目："><a href="#一：题目：" class="headerlink" title="一：题目："></a>一：题目：</h2><p>将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。</p>
+<p>比如输入字符串为 “LEETCODEISHIRING” 行数为 3 时，排列如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">L   C   I   R</span><br><span class="line">E T O E S I I G</span><br><span class="line">E   D   H   N</span><br></pre></td></tr></table></figure>
+<p>之后，你的输出需要从左往右逐行读取，产生出一个新的字符串，比如：”LCIRETOESIIGEDHN”。</p>
+<p>请你实现这个将字符串进行指定行数变换的函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string convert(string s, int numRows);</span><br></pre></td></tr></table></figure>
+
+<p>示例1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: s &#x3D; &quot;LEETCODEISHIRING&quot;, numRows &#x3D; 3</span><br><span class="line">输出: &quot;LCIRETOESIIGEDHN&quot;</span><br></pre></td></tr></table></figure>
+
+<p>示例2：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入: s &#x3D; &quot;LEETCODEISHIRING&quot;, numRows &#x3D; 4</span><br><span class="line">输出: &quot;LDREOEIIECIHNTSG&quot;</span><br><span class="line">解释:</span><br><span class="line"></span><br><span class="line">L     D     R</span><br><span class="line">E   O E   I I</span><br><span class="line">E C   I H   N</span><br><span class="line">T     S     G</span><br></pre></td></tr></table></figure>
+
+<h2 id="二：思路解析"><a href="#二：思路解析" class="headerlink" title="二：思路解析"></a>二：思路解析</h2><ol>
+<li>首先分析题目，输出内容其实就是重排之后的各行相加，那么问题就变为了按照规律排列，序号为n的字符在第几行</li>
+<li>可以把字符串分为几组，然后每组按照规律push到不同行中，最后各行相加得出结果</li>
+</ol>
+<h2 id="三：解决代码JavaScript版本："><a href="#三：解决代码JavaScript版本：" class="headerlink" title="三：解决代码JavaScript版本："></a>三：解决代码JavaScript版本：</h2><p>我的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">var convert &#x3D; function(s, numRows) &#123;</span><br><span class="line">    if (numRows &#x3D;&#x3D;&#x3D; 0) &#123;</span><br><span class="line">        return &#39;&#39;;</span><br><span class="line">    &#125; else if (numRows &#x3D;&#x3D;&#x3D; 1) &#123;</span><br><span class="line">        return s;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var res &#x3D; [];</span><br><span class="line">    var desc &#x3D; false;</span><br><span class="line">    var index &#x3D; 0;</span><br><span class="line">    var length &#x3D; s.length</span><br><span class="line"></span><br><span class="line">    for (var i &#x3D; 0; i &lt; length; i++) &#123;</span><br><span class="line">        &#x2F;&#x2F; console.log(&quot;res[index] is &#x3D;&#x3D;&#x3D;&gt;&gt;&gt;&quot;, res[index])</span><br><span class="line">        res[index] &#x3D; res[index] ? res[index] + s[i] : s[i]</span><br><span class="line"></span><br><span class="line">        if (index % (numRows - 1) &#x3D;&#x3D;&#x3D; 0) &#123;</span><br><span class="line">            desc &#x3D; !desc;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F; console.log(&quot;index is &#x3D;&#x3D;&#x3D;&gt;&gt;&gt;&quot;, index)</span><br><span class="line">        index &#x3D; desc ? index + 1: index - 1;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; console.log(&#39;for over res is &#x3D;&#x3D;&#x3D;&gt;&gt;&gt;&#39;, res)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return res.join(&#39;&#39;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>优秀答案：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">var betterConvert &#x3D; function(s, numRows) &#123;</span><br><span class="line">    var map &#x3D; &#123;&#125;</span><br><span class="line">    var j &#x3D; 0;</span><br><span class="line">    if (numRows &lt;&#x3D; 1) &#123;</span><br><span class="line">        return s;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var boo &#x3D; true;</span><br><span class="line">    for (var i &#x3D; 0; i &lt; s.length; i++) &#123;</span><br><span class="line">        if (!map[j]) &#123;</span><br><span class="line">            map[j] &#x3D; &#39;&#39;;</span><br><span class="line">        &#125;</span><br><span class="line">        map[j] &#x3D; map[j] + s[i];</span><br><span class="line"></span><br><span class="line">        if (boo) &#123;</span><br><span class="line">            j++;</span><br><span class="line">            if (j &gt;&#x3D; numRows) &#123;</span><br><span class="line">                j &#x3D; j -2;</span><br><span class="line">                boo &#x3D; false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            j--;</span><br><span class="line">            if (j &lt; 0) &#123;</span><br><span class="line">                boo &#x3D; true;</span><br><span class="line">                j &#x3D; j + 2;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    s &#x3D; &#39;&#39;;</span><br><span class="line">    Object.keys(map).forEach(i &#x3D;&gt; &#123;</span><br><span class="line">        s &#x3D; s + map[i];</span><br><span class="line">    &#125;)</span><br><span class="line">    return s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="四：总结："><a href="#四：总结：" class="headerlink" title="四：总结："></a>四：总结：</h2><ol>
+<li>优秀答案为使用了Map，执行效率确实比数组更好</li>
+<li>代码运行时可以打印下运行过程，这样有助于理解</li>
+</ol>
 
             </div>
             <hr/>
@@ -354,7 +380,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/302wanger/2020/03/09/my-first-article/">https://github.com/302wanger/2020/03/09/my-first-article/</a>
+                    <a href="https://github.com/302wanger/2020/03/11/leetcode-6-Z%E5%AD%97%E5%BD%A2%E5%8F%98%E6%8D%A2/">https://github.com/302wanger/2020/03/11/leetcode-6-Z%E5%AD%97%E5%BD%A2%E5%8F%98%E6%8D%A2/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -434,24 +460,25 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2020/03/09/hello-world/">
+                <a href="/2020/03/11/%E5%A5%BD%E7%8E%A9%E7%9A%84JS%E6%95%B0%E7%BB%84/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="好玩的JS数组">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">好玩的JS数组</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
+                            好玩的js数组数组去重
+12345678910function quChong(array) &#123;    var reuslt &#x3D; []    for (var i &#x3D; 0; i &lt; array.lengt
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-09
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-11
                         </span>
                         <span class="publish-author">
                             
@@ -468,23 +495,22 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                Current&nbsp;<i class="far fa-dot-circle"></i>
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/09/my-first-article/">
+                <a href="/2020/03/09/hello-world/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="my first article">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
                         
-                        <span class="card-title">my first article</span>
+                        <span class="card-title">Hello World</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            我是 first article
-
+                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
                         
                     </div>
                     <div class="publish-info">
@@ -499,7 +525,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
