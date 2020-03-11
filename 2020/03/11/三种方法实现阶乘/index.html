@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="leetcode-7-Z字形变换, 302wanger">
+    <meta name="keywords" content="三种方法实现阶乘, 302wanger">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>leetcode-7-Z字形变换 | 302wanger</title>
+    <title>三种方法实现阶乘 | 302wanger</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -177,12 +177,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">leetcode-7-Z字形变换</h1>
+                    <h1 class="description center-align post-title">三种方法实现阶乘</h1>
                 </div>
             </div>
         </div>
@@ -328,33 +328,14 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一：题目："><a href="#一：题目：" class="headerlink" title="一：题目："></a>一：题目：</h2><p>将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。</p>
-<p>比如输入字符串为 “LEETCODEISHIRING” 行数为 3 时，排列如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">L   C   I   R</span><br><span class="line">E T O E S I I G</span><br><span class="line">E   D   H   N</span><br></pre></td></tr></table></figure>
-<p>之后，你的输出需要从左往右逐行读取，产生出一个新的字符串，比如：”LCIRETOESIIGEDHN”。</p>
-<p>请你实现这个将字符串进行指定行数变换的函数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string convert(string s, int numRows);</span><br></pre></td></tr></table></figure>
+                <h1 id="三种实现阶乘的方法"><a href="#三种实现阶乘的方法" class="headerlink" title="三种实现阶乘的方法"></a>三种实现阶乘的方法</h1><p>方法1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function factorialize(num) &#123;</span><br><span class="line">  &#x2F;&#x2F; 如果num小于1，则终止</span><br><span class="line">  if (num&lt;0) &#123;</span><br><span class="line">    return -1;</span><br><span class="line">  &#125; else if (num &#x3D;&#x3D;&#x3D; 0 || num &#x3D;&#x3D;&#x3D; 1) &#123;</span><br><span class="line">    &#x2F;&#x2F; num&#x3D;0或num&#x3D;1，返回1，这个是定理</span><br><span class="line">    return 1;</span><br><span class="line">  &#125; else&#123;</span><br><span class="line">    return num * factorialize(num-1);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">factorialize(5);</span><br></pre></td></tr></table></figure>
+<p>第一个方法及其简单，else语句中是重复调用函数。但是这种方法好像有内存溢出的风险；</p>
+<p>方法2：for循环</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function factorialize(num) &#123;</span><br><span class="line">  if (num &lt; 0) &#123;</span><br><span class="line">    return -1;</span><br><span class="line">  &#125; else if (num&#x3D;&#x3D;&#x3D;0 || num &#x3D;&#x3D;&#x3D; 1) &#123;</span><br><span class="line">    return 1;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    for (var i &#x3D; num -1; i &gt;&#x3D; 1; i--) &#123;</span><br><span class="line">      num *&#x3D; i;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>示例1：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: s &#x3D; &quot;LEETCODEISHIRING&quot;, numRows &#x3D; 3</span><br><span class="line">输出: &quot;LCIRETOESIIGEDHN&quot;</span><br></pre></td></tr></table></figure>
-
-<p>示例2：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入: s &#x3D; &quot;LEETCODEISHIRING&quot;, numRows &#x3D; 4</span><br><span class="line">输出: &quot;LDREOEIIECIHNTSG&quot;</span><br><span class="line">解释:</span><br><span class="line"></span><br><span class="line">L     D     R</span><br><span class="line">E   O E   I I</span><br><span class="line">E C   I H   N</span><br><span class="line">T     S     G</span><br></pre></td></tr></table></figure>
-
-<h2 id="二：思路解析"><a href="#二：思路解析" class="headerlink" title="二：思路解析"></a>二：思路解析</h2><ol>
-<li>首先分析题目，输出内容其实就是重排之后的各行相加，那么问题就变为了按照规律排列，序号为n的字符在第几行</li>
-<li>可以把字符串分为几组，然后每组按照规律push到不同行中，最后各行相加得出结果</li>
-</ol>
-<h2 id="三：解决代码JavaScript版本："><a href="#三：解决代码JavaScript版本：" class="headerlink" title="三：解决代码JavaScript版本："></a>三：解决代码JavaScript版本：</h2><p>我的方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">var convert &#x3D; function(s, numRows) &#123;</span><br><span class="line">    if (numRows &#x3D;&#x3D;&#x3D; 0) &#123;</span><br><span class="line">        return &#39;&#39;;</span><br><span class="line">    &#125; else if (numRows &#x3D;&#x3D;&#x3D; 1) &#123;</span><br><span class="line">        return s;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var res &#x3D; [];</span><br><span class="line">    var desc &#x3D; false;</span><br><span class="line">    var index &#x3D; 0;</span><br><span class="line">    var length &#x3D; s.length</span><br><span class="line"></span><br><span class="line">    for (var i &#x3D; 0; i &lt; length; i++) &#123;</span><br><span class="line">        &#x2F;&#x2F; console.log(&quot;res[index] is &#x3D;&#x3D;&#x3D;&gt;&gt;&gt;&quot;, res[index])</span><br><span class="line">        res[index] &#x3D; res[index] ? res[index] + s[i] : s[i]</span><br><span class="line"></span><br><span class="line">        if (index % (numRows - 1) &#x3D;&#x3D;&#x3D; 0) &#123;</span><br><span class="line">            desc &#x3D; !desc;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F; console.log(&quot;index is &#x3D;&#x3D;&#x3D;&gt;&gt;&gt;&quot;, index)</span><br><span class="line">        index &#x3D; desc ? index + 1: index - 1;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; console.log(&#39;for over res is &#x3D;&#x3D;&#x3D;&gt;&gt;&gt;&#39;, res)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return res.join(&#39;&#39;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>优秀答案：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">var betterConvert &#x3D; function(s, numRows) &#123;</span><br><span class="line">    var map &#x3D; &#123;&#125;</span><br><span class="line">    var j &#x3D; 0;</span><br><span class="line">    if (numRows &lt;&#x3D; 1) &#123;</span><br><span class="line">        return s;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var boo &#x3D; true;</span><br><span class="line">    for (var i &#x3D; 0; i &lt; s.length; i++) &#123;</span><br><span class="line">        if (!map[j]) &#123;</span><br><span class="line">            map[j] &#x3D; &#39;&#39;;</span><br><span class="line">        &#125;</span><br><span class="line">        map[j] &#x3D; map[j] + s[i];</span><br><span class="line"></span><br><span class="line">        if (boo) &#123;</span><br><span class="line">            j++;</span><br><span class="line">            if (j &gt;&#x3D; numRows) &#123;</span><br><span class="line">                j &#x3D; j -2;</span><br><span class="line">                boo &#x3D; false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            j--;</span><br><span class="line">            if (j &lt; 0) &#123;</span><br><span class="line">                boo &#x3D; true;</span><br><span class="line">                j &#x3D; j + 2;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    s &#x3D; &#39;&#39;;</span><br><span class="line">    Object.keys(map).forEach(i &#x3D;&gt; &#123;</span><br><span class="line">        s &#x3D; s + map[i];</span><br><span class="line">    &#125;)</span><br><span class="line">    return s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="四：总结："><a href="#四：总结：" class="headerlink" title="四：总结："></a>四：总结：</h2><ol>
-<li>优秀答案为使用了Map，执行效率确实比数组更好</li>
-<li>代码运行时可以打印下运行过程，这样有助于理解</li>
-</ol>
+<p>方法3：while循环</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function factorialize(num) &#123;</span><br><span class="line">  var result &#x3D; num;</span><br><span class="line">  if (num &lt; 1) &#123;</span><br><span class="line">    return -1;</span><br><span class="line">  &#125; else if (num&#x3D;&#x3D;&#x3D;0 || num&#x3D;&#x3D;&#x3D;1) &#123;</span><br><span class="line">    return 1;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    while (num &gt; 1) &#123;</span><br><span class="line">      num--;</span><br><span class="line">      result *&#x3D; num;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
             </div>
             <hr/>
@@ -380,7 +361,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/302wanger/2020/03/11/leetcode-7-Z%E5%AD%97%E5%BD%A2%E5%8F%98%E6%8D%A2/">https://github.com/302wanger/2020/03/11/leetcode-7-Z%E5%AD%97%E5%BD%A2%E5%8F%98%E6%8D%A2/</a>
+                    <a href="https://github.com/302wanger/2020/03/11/%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E9%98%B6%E4%B9%98/">https://github.com/302wanger/2020/03/11/%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E9%98%B6%E4%B9%98/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -460,20 +441,20 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2020/03/11/%E5%A5%BD%E7%8E%A9%E7%9A%84JS%E6%95%B0%E7%BB%84/">
+                <a href="/2020/03/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E7%9A%84%E6%95%B0%E7%BB%84%E4%B8%8B%E6%A0%87%E4%BB%8E0%E5%BC%80%E5%A7%8B/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="好玩的JS数组">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="为什么编程语言的数组下标从0开始">
                         
-                        <span class="card-title">好玩的JS数组</span>
+                        <span class="card-title">为什么编程语言的数组下标从0开始</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            好玩的js数组数组去重
-12345678910function quChong(array) &#123;    var reuslt &#x3D; []    for (var i &#x3D; 0; i &lt; array.lengt
+                            举个例子，一个小孩子将5个玩具从筐里拿出来，他是这么计数的：1，2，3，4，5 。而在编程领域，从数组里取值，是这么计数的：0，1，2，3，4。是不是很神奇，那为何编程领域要这么做的？通过查找资料和文章，发现原因如下：
+原因1:历史原因，别
                         
                     </div>
                     <div class="publish-info">
@@ -498,25 +479,25 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/09/secone-article/">
+                <a href="/2020/03/11/%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="secone article">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="罗马数字转整数">
                         
-                        <span class="card-title">secone article</span>
+                        <span class="card-title">罗马数字转整数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            second article
-
+                            题目罗马数字包含以下七种字符:I，V，X，L，C，D和M。
+字符          数值I             1V             5X             10L             50C             
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-11
                             </span>
                         <span class="publish-author">
                             
