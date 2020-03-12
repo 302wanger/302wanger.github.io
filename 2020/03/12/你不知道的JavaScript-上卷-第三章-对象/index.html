@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="为什么编程语言的数组下标从0开始, 302wanger">
+    <meta name="keywords" content="你不知道的JavaScript(上卷)-第三章-对象, 302wanger">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>为什么编程语言的数组下标从0开始 | 302wanger</title>
+    <title>你不知道的JavaScript(上卷)-第三章-对象 | 302wanger</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -177,12 +177,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">为什么编程语言的数组下标从0开始</h1>
+                    <h1 class="description center-align post-title">你不知道的JavaScript(上卷)-第三章-对象</h1>
                 </div>
             </div>
         </div>
@@ -311,7 +311,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-03-11
+                    2020-03-12
                 </div>
                 
 
@@ -328,13 +328,131 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>举个例子，一个小孩子将5个玩具从筐里拿出来，他是这么计数的：1，2，3，4，5 。而在编程领域，从数组里取值，是这么计数的：0，1，2，3，4。<br>是不是很神奇，那为何编程领域要这么做的？<br>通过查找资料和文章，发现原因如下：</p>
-<h4 id="原因1-历史原因，别人是这么干的"><a href="#原因1-历史原因，别人是这么干的" class="headerlink" title="原因1:历史原因，别人是这么干的"></a>原因1:历史原因，别人是这么干的</h4><p>C语言设计者用0开始计数数组下标，之后的Java，JavsScript等高级语言都模仿了C语言，或者说，为了在一定成都上减少C语言程序员学习Java的学习成本，因此继续沿用了从0开始计数的习惯。</p>
-<p>实际上，也有其他语言中数组并不是从0开始的，比如Matlab，甚至还有一些语言支持负数下标，比如Python。</p>
-<h4 id="原因2-底层为了性能"><a href="#原因2-底层为了性能" class="headerlink" title="原因2:底层为了性能"></a>原因2:底层为了性能</h4><p>从数组存储的内存模型上来看，“下标”最确切的定义应该是“偏移”。如果用a来表示数组的首地址，a[0]就是偏移为0的位置，也就是首地址，a[n]就表示偏移n个type_size 的位置，所以计算a[n]的内存地址只需要下边这个公式：</p>
-<pre><code>a[n]_address = base_address + n * type_size</code></pre><p>但是，如果数组从1开始计数，那么计算数组元素的a[n]的内存地址就会变成</p>
-<pre><code>a[n]_address = base_address + (n-1)*type_size</code></pre><p>对比两个公式，如果从1开始编号，每次随机访问数组就多了一次减法运算，对于CPU来说，就是多了一次减法指令。</p>
-<p>数组作为非常基础的数据结构，通过下标随机访问数组元素又是非常基础的编程操作，效率的优化要尽可能做到极致。所以为了减少一次减法操作，数组选择了从0开始编号，而不是从1开始。</p>
+                <h2 id="一：这一章到底在说什么？"><a href="#一：这一章到底在说什么？" class="headerlink" title="一：这一章到底在说什么？"></a>一：这一章到底在说什么？</h2><p>详细介绍对象。</p>
+<ol>
+<li>语法</li>
+<li>类型</li>
+<li>内容<ol>
+<li>可计算属性</li>
+<li>属性和方法</li>
+<li>数组</li>
+<li>复制对象</li>
+<li>属性描述符</li>
+<li>不变性</li>
+<li>[Get]</li>
+<li>[Put]</li>
+<li>Getter和Setter</li>
+<li>存在性</li>
+</ol>
+</li>
+<li>遍历</li>
+</ol>
+<h2 id="二：作者具体说了什么，怎么说的？"><a href="#二：作者具体说了什么，怎么说的？" class="headerlink" title="二：作者具体说了什么，怎么说的？"></a>二：作者具体说了什么，怎么说的？</h2><h3 id="3-1-语法"><a href="#3-1-语法" class="headerlink" title="3.1:语法"></a>3.1:语法</h3><p>创建对象的两种方式：声明形式和构造形式。</p>
+<p><em>声明形式</em>：</p>
+<pre><code>Var myObject = {
+    key: value,
+    // ….
+}</code></pre><p><em>构造形式</em>：</p>
+<pre><code>Var myObj = new Object();
+myObj.key = value</code></pre><p><em>两种形式的区别</em>：</p>
+<ol>
+<li>声明形式可以添加多个键/值对（一般也都是这种方式创建对象）</li>
+<li>构造形式必须逐个添加属性</li>
+</ol>
+<h3 id="3-2-类型"><a href="#3-2-类型" class="headerlink" title="3.2: 类型"></a>3.2: 类型</h3><p>对象是JavaScript的基础，其中有一些对象子类型，被称为内置对象。如下：</p>
+<ol>
+<li>String</li>
+<li>Number</li>
+<li>Boolean</li>
+<li>Object</li>
+<li>Function</li>
+<li>Array</li>
+<li>Date</li>
+<li>RegExp</li>
+<li>Error<br>这些内置对象很像其他语言中的type或class，但是实际上只是一些内置函数。这些内置函数可以当作构造函数来使用，从而构造出一个对应子类型的新对象。比如：<pre><code>Var strObject = new String(“i am a stirng”)
+Typeof strObject; // object</code></pre></li>
+</ol>
+<h2 id="3-3-内容"><a href="#3-3-内容" class="headerlink" title="3.3: 内容"></a>3.3: 内容</h2><p><em>3.3.1:可计算属性名</em><br>可以在文字形式中使用[]包括一个表达式当作属性名<br>代码如下：</p>
+<pre><code>var preFix = “foo”;
+
+var myObject = {
+  [preFix + “bar”]: “hello”,
+  [preFix + “baz”]: “world”
+};
+
+myObject[“foobar”]; // hello
+myObject[“foobaz”]; // world</code></pre><p>可计算属性命最常用的场景可能是es6的符号(Symbol) ,这是一种新的基础数据类型，包含一个不透明且无法预测的值。比如：</p>
+<pre><code>var mySymbol = {
+  [Symbol.SomeName]: “hello world”
+};          </code></pre><p><em>3.3.2 属性与方法</em></p>
+<p><em>3.3.3: 数组</em><br>数组其实也是对象的一种，你可以给数组添加属性，但是不推荐这么用。<br>比如：</p>
+<pre><code>var myArr = [“foo”, 3, “bar”]
+
+myArr.baz = “baz”;
+myArr.length; // 3
+myArr.baz; // baz</code></pre><p><em>3.3.4: 复制对象</em><br>会有深复制、浅复制的区别，同时JSON.toString方法。<br><em>3.3.5:属性表述符</em><br>对象属性对应的属性描述符。比如</p>
+<pre><code>var myObject = {
+    a: 2
+}
+
+Object.defineProperty(myObject, “a”, {
+    value: 2,
+    writable: true, //是否可以修改属性的值
+    configurable: true, // 是否可配置
+    enumerable: true //是否出现在for…in等枚举中
+})</code></pre><p><em>3.3.6:不变性</em><br>举个例子：我不想让myArr.first的值发生变化，有哪几种方式？</p>
+<pre><code>myArr.first; // [1,2,3]
+myArr.first.push(4); 
+myArr.first; // [1,2,3,4]</code></pre><ol>
+<li>对象常量：结合 writeable:false和configurable:false设置</li>
+<li>禁止拓展：Object.preventExtensions(myArr.first)</li>
+<li>密封：Object.seal(myArr.first); 该方法会创建一个密封的对象，这个方法实际上会在一个现有对象上调用Object.preventExtensions并把所有现有属性编辑位configurable:false</li>
+<li>冻结：Object.freeze(…):该方法会创建一个冻结对象，这歌方法会在现有对象上调用Object.seal(…)并把所有数据访问属性标记为writeable:false</li>
+</ol>
+<p><em>3.3.7 [Get]</em><br>看如下代码：</p>
+<pre><code>var myObject = {
+    a: undefined
+}
+
+myObject.a; // undefined
+myObject.b; // undefined</code></pre><p>myObject.a 实际上执行了[get]操作（有点像函数调用:[get]）。对象内置的[get] 操作首先在对象中查找是否有名称相同的属性，如果找到就会返回这个值。<br>而像myObject.b没有找到的话，会执行另一个种非常重要的行为。（即原型链）。尽管myObject.a和myObject.b 都返回了undefined ,但是实际上底层的[get]对object.b进行了更复杂的处理。</p>
+<p><em>3.3.8: 【Put】</em><br>   【Put】被触发时，实际的行为取决于许多对象，包括对象中是否已经存在这个属性。<br>如果已经存在这个属性，会检查以下内容：</p>
+<ol>
+<li>属性是否是访问描述符？如果是并且存在setter就调用setter</li>
+<li>属性的数据描述符中writable 是否是false?如果是，在非严格模式下静默失败，在严格模式下抛出TypeError异常。</li>
+<li>如果都不是，将该值设置为属性的值。</li>
+</ol>
+<p><em>3.3.9 Getter和Setter</em></p>
+<p>分别可以控制属性值的设置和获取。</p>
+<p><em>3.3.10</em>存在性<br>我们可以在不访问属性值的情况下判断对象中是否存在这个属性。</p>
+<pre><code>var myObecjt = {
+    a: 2
+}
+
+myObject.hasOwnProperty(“a”); // true
+myObject.hasOwnProperty(“b”); // false</code></pre><h3 id="3-4-遍历"><a href="#3-4-遍历" class="headerlink" title="3.4: 遍历"></a>3.4: 遍历</h3><p><em>有几种遍历的方式呢？</em></p>
+<ol>
+<li>fo…in ：用了遍历对象的可枚举属性列表(包含Prototype链)</li>
+<li>forEach(…):会遍历数组中的所有值并忽略回调函数的返回值。</li>
+<li>every(…)：一直运行直到回调函数返回false</li>
+<li>some(…)：一直运行直到回调函数返回true</li>
+<li>for…of: 首先会访问被访问对象请求一个迭代器对象，然后通过调用迭代器对象的next()方法来遍历所有返回值。</li>
+</ol>
+<pre><code>var myArray = [1, 2, 3];
+var it = myArray[Symbol.iterator]();
+
+it.next(); // {value:1, done: false}
+it.next(); // {value:2, done: false}
+it.next(); // {value:3, done: false}
+it.next(); // {done: true}</code></pre><h2 id="三：这一章跟你有什么关系？"><a href="#三：这一章跟你有什么关系？" class="headerlink" title="三：这一章跟你有什么关系？"></a>三：这一章跟你有什么关系？</h2><p>对象的全面解析，是js语言的重点啊，熟悉底层原理是很重要的。</p>
+<h2 id="四：本章小结："><a href="#四：本章小结：" class="headerlink" title="四：本章小结："></a>四：本章小结：</h2><ol>
+<li>Js中的对象有字面形式(var a = {…})和构造形式(var a = new Array(…))。字面形式更常用，不过有时构造形式可以提供更多选项。</li>
+<li>许多人都认为“JavaScript 中万物都是对象”，这是错误的。对象是6个基础类型之一。对象有包括function在内的子类型，不同子类型具有不同的行为，比如内部标签[object Array ]表示这是对象的子类型数组。</li>
+<li>对象就是键/值 对 的集合，可以通过.propName或者 [“propName”]语法来获取属性值。访问属性时，引擎实际上会调用内部的默认[Get]操作，[Get]操作会检查对象本身是否包含这个属性，如果没找到的话还会查找[Prototype]链</li>
+<li>属性的特性可以通过属性描述符来控制，比如writable和configurable.此外，可以使用Object.preventExtensions(…) \ Object.seal(…) \ Object.freeze(…)来设置对象的不可变性级别。</li>
+<li>属性不一定包含值—它们可能是具备getter/setter 的“访问描述符”。此外，属性可以时可枚举或者不可枚举的，这决定了它们是否会出现在for…in循环中。</li>
+<li>你可以使用for…of语法来遍历数据结构（数组、对象，等等）中的值，for…of会寻找内置或自定义的@@iterator对象并调用它的 next()方法来遍历数据值。</li>
+</ol>
 
             </div>
             <hr/>
@@ -360,7 +478,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/302wanger/2020/03/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E7%9A%84%E6%95%B0%E7%BB%84%E4%B8%8B%E6%A0%87%E4%BB%8E0%E5%BC%80%E5%A7%8B/">https://github.com/302wanger/2020/03/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E7%9A%84%E6%95%B0%E7%BB%84%E4%B8%8B%E6%A0%87%E4%BB%8E0%E5%BC%80%E5%A7%8B/</a>
+                    <a href="https://github.com/302wanger/2020/03/12/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript-%E4%B8%8A%E5%8D%B7-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AF%B9%E8%B1%A1/">https://github.com/302wanger/2020/03/12/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript-%E4%B8%8A%E5%8D%B7-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AF%B9%E8%B1%A1/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -440,21 +558,20 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2020/03/12/leetcode-8-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0/">
+                <a href="/2020/03/12/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript-%E4%B8%8A%E5%8D%B7-%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%B7%B7%E5%90%88%E5%AF%B9%E8%B1%A1%E7%B1%BB/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="leetCode-08-字符串转换整数">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="你不知道的JavaScript(上卷)-第四章-混合对象类">
                         
-                        <span class="card-title">leetCode-08-字符串转换整数</span>
+                        <span class="card-title">你不知道的JavaScript(上卷)-第四章-混合对象类</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            一：题目请你来实现一个 atoi 函数，使其能将字符串转换成整数。
-首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。
-当我们寻找到的第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字组合起来，
+                            这一章到底在说什么？面向类的设计模式：实例化、继承、多态。
+具体怎么说的？4.1：类理论什么是类：类/继承表述了一种代码的组织结构形式——一种在软件中对真实世界中问题领域的建模方法。类同时也是一种设计模式，但是在js中是否使用它你可以自己决
                         
                     </div>
                     <div class="publish-info">
@@ -479,29 +596,26 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/11/%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E9%98%B6%E4%B9%98/">
+                <a href="/2020/03/12/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript-%E4%B8%AD%E5%8D%B7-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E7%B1%BB%E5%9E%8B/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="三种方法实现阶乘">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="你不知道的JavaScript(中卷)-第一章-类型">
                         
-                        <span class="card-title">三种方法实现阶乘</span>
+                        <span class="card-title">你不知道的JavaScript(中卷)-第一章-类型</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            三种实现阶乘的方法方法1
-function factorialize(num) {
-  // 如果num小于1，则终止
-  if (num&lt;0) {
-    return -1;
-  } else if (num === 0 || n
+                            这一章到底在说什么？JavaScript中的类型有哪几种，及其它的一些用法。
+作者具体说了什么，怎么说的？什么是类型：对语言引擎和开发人员来说，类型是值的内部特征，它定义了值的行为，以使其区别于其他值。
+1.2 内置类型JavaScript
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-12
                             </span>
                         <span class="publish-author">
                             

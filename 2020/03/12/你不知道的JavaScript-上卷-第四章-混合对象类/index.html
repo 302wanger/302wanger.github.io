@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="为什么编程语言的数组下标从0开始, 302wanger">
+    <meta name="keywords" content="你不知道的JavaScript(上卷)-第四章-混合对象类, 302wanger">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>为什么编程语言的数组下标从0开始 | 302wanger</title>
+    <title>你不知道的JavaScript(上卷)-第四章-混合对象类 | 302wanger</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -177,12 +177,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">为什么编程语言的数组下标从0开始</h1>
+                    <h1 class="description center-align post-title">你不知道的JavaScript(上卷)-第四章-混合对象类</h1>
                 </div>
             </div>
         </div>
@@ -311,7 +311,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-03-11
+                    2020-03-12
                 </div>
                 
 
@@ -328,13 +328,21 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>举个例子，一个小孩子将5个玩具从筐里拿出来，他是这么计数的：1，2，3，4，5 。而在编程领域，从数组里取值，是这么计数的：0，1，2，3，4。<br>是不是很神奇，那为何编程领域要这么做的？<br>通过查找资料和文章，发现原因如下：</p>
-<h4 id="原因1-历史原因，别人是这么干的"><a href="#原因1-历史原因，别人是这么干的" class="headerlink" title="原因1:历史原因，别人是这么干的"></a>原因1:历史原因，别人是这么干的</h4><p>C语言设计者用0开始计数数组下标，之后的Java，JavsScript等高级语言都模仿了C语言，或者说，为了在一定成都上减少C语言程序员学习Java的学习成本，因此继续沿用了从0开始计数的习惯。</p>
-<p>实际上，也有其他语言中数组并不是从0开始的，比如Matlab，甚至还有一些语言支持负数下标，比如Python。</p>
-<h4 id="原因2-底层为了性能"><a href="#原因2-底层为了性能" class="headerlink" title="原因2:底层为了性能"></a>原因2:底层为了性能</h4><p>从数组存储的内存模型上来看，“下标”最确切的定义应该是“偏移”。如果用a来表示数组的首地址，a[0]就是偏移为0的位置，也就是首地址，a[n]就表示偏移n个type_size 的位置，所以计算a[n]的内存地址只需要下边这个公式：</p>
-<pre><code>a[n]_address = base_address + n * type_size</code></pre><p>但是，如果数组从1开始计数，那么计算数组元素的a[n]的内存地址就会变成</p>
-<pre><code>a[n]_address = base_address + (n-1)*type_size</code></pre><p>对比两个公式，如果从1开始编号，每次随机访问数组就多了一次减法运算，对于CPU来说，就是多了一次减法指令。</p>
-<p>数组作为非常基础的数据结构，通过下标随机访问数组元素又是非常基础的编程操作，效率的优化要尽可能做到极致。所以为了减少一次减法操作，数组选择了从0开始编号，而不是从1开始。</p>
+                <h2 id="这一章到底在说什么？"><a href="#这一章到底在说什么？" class="headerlink" title="这一章到底在说什么？"></a>这一章到底在说什么？</h2><p>面向类的设计模式：实例化、继承、多态。</p>
+<h2 id="具体怎么说的？"><a href="#具体怎么说的？" class="headerlink" title="具体怎么说的？"></a>具体怎么说的？</h2><h3 id="4-1：类理论"><a href="#4-1：类理论" class="headerlink" title="4.1：类理论"></a>4.1：类理论</h3><p>什么是类：类/继承表述了一种代码的组织结构形式——一种在软件中对真实世界中问题领域的建模方法。<br>类同时也是一种设计模式，但是在js中是否使用它你可以自己决定。</p>
+<h3 id="4-2-类的机制"><a href="#4-2-类的机制" class="headerlink" title="4.2: 类的机制"></a>4.2: 类的机制</h3><p>类和实例的概念来自于房屋建造，类似设计图和房子的关系。<br><em>构造函数</em>：属于类，而且通常和类同名。此外使用new来调用，这样语言引擎才知道你要构造一个新的类实例。</p>
+<h3 id="4-3-类的继承"><a href="#4-3-类的继承" class="headerlink" title="4.3: 类的继承"></a>4.3: 类的继承</h3><p>子类可以复制父类的方法，同时可以重写父类的方法。<br>Js中并不提供多重继承的功能，而是通过其他方法。</p>
+<h3 id="4-4-混入"><a href="#4-4-混入" class="headerlink" title="4.4: 混入"></a>4.4: 混入</h3><p>在继承或者实例化湿，js的对象机制并不会自动执行复制行为。简单来说，js中只有对象，并不存在被实例化的类。一个对象并不会被复制到其他对象，它们会被关联起来。<br>由于其他语言类表现出来的都是复制行为，因此js开发者使用混入来模拟类的复制行为。混入也分：显示和隐式混入。</p>
+<h2 id="和我有什么关系？"><a href="#和我有什么关系？" class="headerlink" title="和我有什么关系？"></a>和我有什么关系？</h2><p>对于js的类进行了一次解析，有助于理解底层的某些思路。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ol>
+<li>类是一种设计模式。许多语言提供了对于面向类软件设计的原生语法。js也有类似的语法，但是和其他语言中的类完全不同。</li>
+<li>类意味着复制。</li>
+<li>传统的类被实例化时，它的行为会被复制到实例中。类被继承时，行为也会被复制到子类中。</li>
+<li>多态（在继承链的不同层次名称相同但是功能不同的函数）看起来似乎是从子类引用父类，但是本质上引用的其实是复制的结果。</li>
+<li>JavaScript并不会（像类那样）自动创建对象的副本。</li>
+<li>混入模式（无论显式还是隐式）可以用来模拟类的复制行为，但是通常会产生丑陋并且脆弱的语法，比如显示伪多态(otherObj.methodName.call(this,…)),这会让代码更加难懂并且难以维护。此外，显示混入实际上无法完全模拟类的复制行为，因为对象（和函数）只能复制引用，无法复制被引用的对象或函数本身。忽视这一点会导致许多问题。</li>
+<li>总的来说，在js中模拟类是得不偿失的，虽然能解决当前的问题，但是可能会埋下更多的隐患。</li>
+</ol>
 
             </div>
             <hr/>
@@ -360,7 +368,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/302wanger/2020/03/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E7%9A%84%E6%95%B0%E7%BB%84%E4%B8%8B%E6%A0%87%E4%BB%8E0%E5%BC%80%E5%A7%8B/">https://github.com/302wanger/2020/03/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E7%9A%84%E6%95%B0%E7%BB%84%E4%B8%8B%E6%A0%87%E4%BB%8E0%E5%BC%80%E5%A7%8B/</a>
+                    <a href="https://github.com/302wanger/2020/03/12/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript-%E4%B8%8A%E5%8D%B7-%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%B7%B7%E5%90%88%E5%AF%B9%E8%B1%A1%E7%B1%BB/">https://github.com/302wanger/2020/03/12/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript-%E4%B8%8A%E5%8D%B7-%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%B7%B7%E5%90%88%E5%AF%B9%E8%B1%A1%E7%B1%BB/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -440,21 +448,33 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2020/03/12/leetcode-8-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0/">
+                <a href="/2020/03/12/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript-%E4%B8%8A%E5%8D%B7-%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%8F%90%E5%8D%87/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="leetCode-08-字符串转换整数">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="你不知道的JavaScript(上卷)-第四章-提升">
                         
-                        <span class="card-title">leetCode-08-字符串转换整数</span>
+                        <span class="card-title">你不知道的JavaScript(上卷)-第四章-提升</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            一：题目请你来实现一个 atoi 函数，使其能将字符串转换成整数。
-首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。
-当我们寻找到的第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字组合起来，
+                            
+先有鸡还是先有蛋？什么意思
+编译器再度来袭？什么意思
+函数优先？
+小结？
+
+第一个问题：先有鸡还是先有蛋？来看代码：
+a = 2;
+var a;
+console.log(a);
+// 会输出什么？ 2
+
+
+console.log(a);
+
                         
                     </div>
                     <div class="publish-info">
@@ -479,29 +499,43 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/11/%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E9%98%B6%E4%B9%98/">
+                <a href="/2020/03/12/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript-%E4%B8%8A%E5%8D%B7-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AF%B9%E8%B1%A1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="三种方法实现阶乘">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="你不知道的JavaScript(上卷)-第三章-对象">
                         
-                        <span class="card-title">三种方法实现阶乘</span>
+                        <span class="card-title">你不知道的JavaScript(上卷)-第三章-对象</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            三种实现阶乘的方法方法1
-function factorialize(num) {
-  // 如果num小于1，则终止
-  if (num&lt;0) {
-    return -1;
-  } else if (num === 0 || n
+                            一：这一章到底在说什么？详细介绍对象。
+
+语法
+类型
+内容
+可计算属性
+属性和方法
+数组
+复制对象
+属性描述符
+不变性
+[Get]
+[Put]
+Getter和Setter
+存在性
+
+
+遍历
+
+二：作者具体说了什么，怎么说的？3.1:语法创建
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-12
                             </span>
                         <span class="publish-author">
                             

@@ -1,0 +1,805 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="七种经典排序算法, 302wanger">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>七种经典排序算法 | 302wanger</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">302wanger</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">302wanger</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">七种经典排序算法</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2020-03-12
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>转载自:<br><a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/" target="_blank" rel="noopener">http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/</a></p>
+<p>经典排序算法总结与实现<br>发表于 2014-02-09<br>  |   分类于 <a href="http://wuchong.me/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" target="_blank" rel="noopener">程序设计 </a>  |   <a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/#comments" target="_blank" rel="noopener"></a>  |   阅读次数 2258</p>
+<p>经典排序算法在面试中占有很大的比重，也是基础，为了未雨绸缪，在寒假里整理并用Python实现了七大经典排序算法，包括冒泡排序，插入排序，选择排序，希尔排序，归并排序，快速排序，堆排序。希望能帮助到有需要的同学。之所以用Python实现，主要是因为它更接近伪代码，能用更少的代码实现算法，更利于理解。<br>本篇博客所有排序实现均默认从小到大。<br><a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/#一、冒泡排序-BubbleSort" target="_blank" rel="noopener"></a>一、冒泡排序 BubbleSort<br><strong>介绍：</strong><br>冒泡排序的原理非常简单，它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来。<br><strong>步骤：</strong><br>比较相邻的元素。如果第一个比第二个大，就交换他们两个。<br>对第0个到第n-1个数据做同样的工作。这时，最大的数就“浮”到了数组最后的位置上。<br>针对所有的元素重复以上的步骤，除了最后一个。<br>持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。</p>
+<p><strong>源代码：</strong>(python实现)</p>
+<pre><code>def bubble_sort(arry): n = len(arry) #获得数组的长度 for i in range(n): for j in range(1,n-i): if arry[j-1]         &gt; arry[j] : #如果前者比后者大 arry[j-1],arry[j] = arry[j],arry[j-1] #则交换两者 return arry</code></pre><p>不过针对上述代码还有两种优化方案。<br>优化1：某一趟遍历如果没有数据交换，则说明已经排好序了，因此不用再进行迭代了。用一个标记记录这个状态即可。优化2：记录某次遍历时最后发生数据交换的位置，这个位置之后的数据显然已经有序，不用再排序了。因此通过记录最后发生数据交换的位置就可以确定下次循环的范围了。<br>这两种优化方案的实现可以详见<a href="https://github.com/wuchong/Algorithm-Interview/blob/master/Sort/python/BubbleSort.py">这里</a>。<br><a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/#二、选择排序-SelectionSort" target="_blank" rel="noopener"></a>二、选择排序 SelectionSort<br><strong>介绍：</strong><br>选择排序无疑是最简单直观的排序。它的工作原理如下。<br><strong>步骤：</strong><br>在未排序序列中找到最小（大）元素，存放到排序序列的起始位置。<br>再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。<br>以此类推，直到所有元素均排序完毕。</p>
+<p><strong>源代码：</strong>(python实现)<br>def select_sort(ary): n = len(ary) for i in range(0,n): min = i #最小元素下标标记 for j in range(i+1,n): if ary[j] &lt; ary[min] : min = j #找到最小值的下标 ary[min],ary[i] = ary[i],ary[min] #交换两者 return ary</p>
+<p><a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/#三、插入排序-InsertionSort" target="_blank" rel="noopener"></a>三、插入排序 InsertionSort<br><strong>介绍：</strong><br>插入排序的工作原理是，对于每个未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。<br><strong>步骤：</strong><br>从第一个元素开始，该元素可以认为已经被排序<br>取出下一个元素，在已经排序的元素序列中从后向前扫描<br>如果被扫描的元素（已排序）大于新元素，将该元素后移一位<br>重复步骤3，直到找到已排序的元素小于或者等于新元素的位置<br>将新元素插入到该位置后<br>重复步骤2~5</p>
+<p><strong>排序演示：</strong><br><a href="http://wuchong.me/img/Insertion-sort-example-300px.gif" target="_blank" rel="noopener">[图片上传中。。。（1）]</a><br><strong>源代码：</strong>(python实现)<br>def insert_sort(ary): n = len(ary) for i in range(1,n): if ary[i] &lt; ary[i-1]: temp = ary[i] index = i #待插入的下标 for j in range(i-1,-1,-1): #从i-1 循环到 0 (包括0) if ary[j] &gt; temp : ary[j+1] = ary[j] index = j #记录待插入下标 else : break ary[index] = temp return ary</p>
+<p><a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/#四、希尔排序-ShellSort" target="_blank" rel="noopener"></a>四、希尔排序 ShellSort<br><strong>介绍：</strong><br>希尔排序，也称递减增量排序算法，实质是分组插入排序。由 Donald Shell 于1959年提出。希尔排序是非稳定排序算法。<br>希尔排序的基本思想是：将数组列在一个表中并对列分别进行插入排序，重复这过程，不过每次用更长的列（步长更长了，列数更少了）来进行。最后整个表就只有一列了。将数组转换至表是为了更好地理解这算法，算法本身还是使用数组进行排序。<br>例如，假设有这样一组数[ 13 14 94 33 82 25 59 94 65 23 45 27 73 25 39 10 ]<br>，如果我们以步长为5开始进行排序，我们可以通过将这列表放在有5列的表中来更好地描述算法，这样他们就应该看起来是这样：<br>13 14 94 33 8225 59 94 65 2345 27 73 25 3910</p>
+<p>然后我们对每列进行排序：<br>10 14 73 25 2313 27 94 33 3925 59 94 65 8245</p>
+<p>将上述四行数字，依序接在一起时我们得到：[ 10 14 73 25 23 13 27 94 33 39 25 59 94 65 82 45 ]<br>。这时10已经移至正确位置了，然后再以3为步长进行排序：<br>10 14 7325 23 1327 94 3339 25 5994 65 8245</p>
+<p>排序之后变为：<br>10 14 1325 23 3327 25 5939 65 7345 94 8294</p>
+<p>最后以1步长进行排序（此时就是简单的插入排序了）。<br><strong>源代码：</strong>(python实现)<br>def shell_sort(ary): n = len(ary) gap = round(n/2) #初始步长 , 用round四舍五入取整 while gap &gt; 0 : for i in range(gap,n): #每一列进行插入排序 , 从gap 到 n-1 temp = ary[i] j = i while ( j &gt;= gap and ary[j-gap] &gt; temp ): #插入排序 ary[j] = ary[j-gap] j = j - gap ary[j] = temp gap = round(gap/2) #重新设置步长 return ary</p>
+<p>上面源码的步长的选择是从n/2<br>开始，每次再减半，直至为0。步长的选择直接决定了希尔排序的复杂度。在<a href="http://zh.wikipedia.org/wiki/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F#.E6.AD.A5.E9.95.BF.E5.BA.8F.E5.88.97" target="_blank" rel="noopener">维基百科</a>上有对于步长串行的详细介绍。<br><a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/#五、归并排序-MergeSort" target="_blank" rel="noopener"></a>五、归并排序 MergeSort<br><strong>介绍：</strong><br>归并排序是采用分治法的一个非常典型的应用。归并<br>排序的思想就是先递归<br>分解数组，再合<br>并数组。<br>先考虑合并两个有序数组，基本思路是比较两个数组的最前面的数，谁小就先取谁，取了后相应的指针就往后移一位。然后再比较，直至一个数组为空，最后把另一个数组的剩余部分复制过来即可。<br>再考虑递归分解，基本思路是将数组分解成left<br>和right<br>，如果这两个数组内部数据是有序的，那么就可以用上面合并数组的方法将这两个数组合并排序。如何让这两个数组内部是有序的？可以再二分，直至分解出的小组只含有一个元素时为止，此时认为该小组内部已有序。然后合并排序相邻二个小组即可。<br><strong>排序演示：</strong><br><a href="http://wuchong.me/img/Merge-sort-example-300px.gif" target="_blank" rel="noopener">[图片上传中。。。（2）]</a><br><strong>源代码：</strong>(python实现)<br>def merge_sort(ary): if len(ary) &lt;= 1 : return ary num = int(len(ary)/2) #二分分解 left = merge_sort(ary[:num]) right = merge_sort(ary[num:]) return merge(left,right) #合并数组def merge(left,right): ‘’’合并操作， 将两个有序数组left[]和right[]合并成一个大的有序数组’’’ l,r = 0,0 #left与right数组的下标指针 result = [] while l&lt;len(left) and r&lt;len(right) : if left[l] &lt; right[r]: result.append(left[l]) l += 1 else: result.append(right[r]) r += 1 result += left[l:] result += right[r:] return result</p>
+<p><a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/#六、快速排序-QuickSort" target="_blank" rel="noopener"></a>六、快速排序 QuickSort<br><strong>介绍：</strong>快速排序通常明显比同为<em>Ο(n log n)</em>的其他算法更快，因此常被采用，而且快排采用了分治法的思想，所以在很多笔试面试中能经常看到快排的影子。可见掌握快排的重要性。<br><strong>步骤：</strong><br>从数列中挑出一个元素作为基准数。<br>分区过程，将比基准数大的放到右边，小于或等于它的数都放到左边。<br>再对左右区间递归执行第二步，直至各区间只有一个数。</p>
+<p><strong>排序演示：</strong><br><a href="http://wuchong.me/img/Quicksort-example.gif" target="_blank" rel="noopener">[图片上传中。。。（3）]</a><br><strong>源代码：</strong>(python实现)<br>def quick_sort(ary): return qsort(ary,0,len(ary)-1)def qsort(ary,left,right): #快排函数，ary为待排序数组，left为待排序的左边界，right为右边界 if left &gt;= right : return ary key = ary[left] #取最左边的为基准数 lp = left #左指针 rp = right #右指针 while lp &lt; rp : while ary[rp] &gt;= key and lp &lt; rp : rp -= 1 while ary[lp] &lt;= key and lp &lt; rp : lp += 1 ary[lp],ary[rp] = ary[rp],ary[lp] ary[left],ary[lp] = ary[lp],ary[left] qsort(ary,left,lp-1) qsort(ary,rp+1,right) return ary</p>
+<p><a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/#七、堆排序-HeapSort" target="_blank" rel="noopener"></a>七、堆排序 HeapSort<br><strong>介绍：</strong><br>堆排序在 top K 问题中使用比较频繁。堆排序是采用二叉堆的数据结构来实现的，虽然实质上还是一维数组。二叉堆是一个近似完全二叉树 。<br><strong>二叉堆具有以下性质：</strong><br>父节点的键值总是大于或等于（小于或等于）任何一个子节点的键值。<br>每个节点的左右子树都是一个二叉堆（都是最大堆或最小堆）。</p>
+<p><strong>步骤：</strong><br>构造最大堆（Build_Max_Heap）：若数组下标范围为0~n，考虑到单独一个元素是大根堆，则从下标n/2<br>开始的元素均为大根堆。于是只要从n/2-1<br>开始，向前依次构造大根堆，这样就能保证，构造到某个节点时，它的左右子树都已经是大根堆。</p>
+<p>堆排序（HeapSort）：由于堆是用数组模拟的。得到一个大根堆后，数组内部并不是有序的。因此需要将堆化数组有序化。思想是移除根节点，并做最大堆调整的递归运算。第一次将heap[0]<br>与heap[n-1]<br>交换，再对heap[0…n-2]<br>做最大堆调整。第二次将heap[0]<br>与heap[n-2]<br>交换，再对heap[0…n-3]<br>做最大堆调整。重复该操作直至heap[0]<br>和heap[1]<br>交换。由于每次都是将最大的数并入到后面的有序区间，故操作完后整个数组就是有序的了。</p>
+<p>最大堆调整（Max_Heapify）：该方法是提供给上述两个过程调用的。目的是将堆的末端子节点作调整，使得子节点永远小于父节点 。</p>
+<p><strong>排序演示：</strong><br><a href="http://wuchong.me/img/Heapsort-example.gif" target="_blank" rel="noopener">[图片上传中。。。（4）]</a><br><strong>源代码：</strong>(python实现)<br>def heap_sort(ary) : n = len(ary) first = int(n/2-1) #最后一个非叶子节点 for start in range(first,-1,-1) : #构造大根堆 max_heapify(ary,start,n-1) for end in range(n-1,0,-1): #堆排，将大根堆转换成有序数组 ary[end],ary[0] = ary[0],ary[end] max_heapify(ary,0,end-1) return ary#最大堆调整：将堆的末端子节点作调整，使得子节点永远小于父节点#start为当前需要调整最大堆的位置，end为调整边界def max_heapify(ary,start,end): root = start while True : child = root*2 +1 #调整节点的子节点 if child &gt; end : break if child+1 &lt;= end and ary[child] &lt; ary[child+1] : child = child+1 #取较大的子节点 if ary[root] &lt; ary[child] : #较大的子节点成为父节点 ary[root],ary[child] = ary[child],ary[root] #交换 root = child else : break</p>
+<p><a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/#总结" target="_blank" rel="noopener"></a>总结<br>下面为七种经典排序算法指标对比情况：<br><a href="http://ww1.sinaimg.cn/large/81b78497jw1emncvtdf1qj20u10afn0r.jpg" target="_blank" rel="noopener">[图片上传中。。。（5）]</a><br><a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/#参考资料" target="_blank" rel="noopener"></a>参考资料<br>维基百科：<a href="http://zh.wikipedia.org/wiki/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F" target="_blank" rel="noopener">希尔排序</a>，<a href="http://zh.wikipedia.org/wiki/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F" target="_blank" rel="noopener">快速排序</a>，<a href="http://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F" target="_blank" rel="noopener">归并排序</a>，<a href="http://zh.wikipedia.org/wiki/%E5%A0%86%E6%8E%92%E5%BA%8F" target="_blank" rel="noopener">堆排序</a><br><a href="http://blog.csdn.net/morewindows/article/details/7961256" target="_blank" rel="noopener">白话经典算法系列</a><br><a href="http://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html" target="_blank" rel="noopener">排序算法可视化</a><br><a href="http://blog.csdn.net/super_chris/article/details/4581900" target="_blank" rel="noopener">所谓堆和堆排序</a><br><a href="http://6924918.blog.51cto.com/6914918/1260860" target="_blank" rel="noopener">几种经典排序算法</a></p>
+<p>注：本文所有源代码已共享到<a href="https://github.com/wuchong/Algorithm-Interview/tree/master/Sort/python">GitHub</a>。<br>-EOF-</p>
+<p><a href="http://wuchong.me/copyright" target="_blank" rel="noopener">**著作权归作者所有</a></p>
+<p><a href="http://wuchong.me/tags/%E7%AE%97%E6%B3%95/" target="_blank" rel="noopener">#算法</a> <a href="http://wuchong.me/tags/Python/" target="_blank" rel="noopener">#Python</a> <a href="http://wuchong.me/tags/%E9%9D%A2%E8%AF%95/" target="_blank" rel="noopener">#面试</a><br>分享到：新浪微博微信TwitterFacebook<a href="http://www.jiathis.com/share" target="_blank" rel="noopener">更多</a>4</p>
+<p><a href="http://wuchong.me/blog/2014/01/27/python-spider-gif/" target="_blank" rel="noopener">** Python爬虫：暴走漫画上的GIF趣图</a><br> <a href="http://wuchong.me/blog/2014/02/25/jquery-datatable-sort-plugin/" target="_blank" rel="noopener">jQuery.dataTables 自定义排序 **</a></p>
+<p>文章目录<br> 站点概览</p>
+<p>**<br><a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/#一、冒泡排序-BubbleSort" target="_blank" rel="noopener">1. 一、冒泡排序 BubbleSort</a><br><a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/#二、选择排序-SelectionSort" target="_blank" rel="noopener">2. 二、选择排序 SelectionSort</a><br><a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/#三、插入排序-InsertionSort" target="_blank" rel="noopener">3. 三、插入排序 InsertionSort</a><br><a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/#四、希尔排序-ShellSort" target="_blank" rel="noopener">4. 四、希尔排序 ShellSort</a><br><a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/#五、归并排序-MergeSort" target="_blank" rel="noopener">5. 五、归并排序 MergeSort</a><br><a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/#六、快速排序-QuickSort" target="_blank" rel="noopener">6. 六、快速排序 QuickSort</a><br><a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/#七、堆排序-HeapSort" target="_blank" rel="noopener">7. 七、堆排序 HeapSort</a><br><a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/#总结" target="_blank" rel="noopener">8. 总结</a><br><a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/#参考资料" target="_blank" rel="noopener">9. 参考资料</a></p>
+<p>**</p>
+<p>© 2013 - 2016 ** WuChong<br>由 <a href="http://hexo.io/" target="_blank" rel="noopener">Hexo</a> 强力驱动<br> 主题 - <a href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://github.com/302wanger" rel="external nofollow noreferrer">302wanger</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://github.com/302wanger/2020/03/12/%E4%B8%83%E7%A7%8D%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">https://github.com/302wanger/2020/03/12/%E4%B8%83%E7%A7%8D%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="https://github.com/302wanger" target="_blank">302wanger</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2020/03/12/%E4%B8%83%E7%A7%8D%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="七种经典排序算法">
+                        
+                        <span class="card-title">七种经典排序算法</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            转载自:http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/
+经典排序算法总结与实现发表于 2014-02-09  |   分类于 程序设计   |     |   阅读次数 2
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            302wanger
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/03/12/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript-%E4%B8%8A%E5%8D%B7-%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%8F%90%E5%8D%87/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="你不知道的JavaScript(上卷)-第四章-提升">
+                        
+                        <span class="card-title">你不知道的JavaScript(上卷)-第四章-提升</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+先有鸡还是先有蛋？什么意思
+编译器再度来袭？什么意思
+函数优先？
+小结？
+
+第一个问题：先有鸡还是先有蛋？来看代码：
+a = 2;
+var a;
+console.log(a);
+// 会输出什么？ 2
+
+
+console.log(a);
+
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            302wanger
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+  
+  <div
+    class="container row center-align"
+    style="margin-bottom: 0px !important;"
+  >
+    <div class="col s12 m8 l8 copy-right">
+      <!-- Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="https://github.com/302wanger" target="_blank">302wanger</a> -->
+      <!-- |&nbsp; -->
+      Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+      |&nbsp;Theme&nbsp;<a
+        href="https://github.com/blinkfox/hexo-theme-matery"
+        target="_blank"
+        >Matery</a
+      >
+      <br />
+            
+      <br />
+      
+      <br />
+      
+    </div>
+    <div class="col s12 m4 l4 social-link social-statis">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

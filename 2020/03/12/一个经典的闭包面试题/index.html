@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="为什么编程语言的数组下标从0开始, 302wanger">
+    <meta name="keywords" content="一个经典的闭包面试题, 302wanger">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>为什么编程语言的数组下标从0开始 | 302wanger</title>
+    <title>一个经典的闭包面试题 | 302wanger</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -177,12 +177,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">为什么编程语言的数组下标从0开始</h1>
+                    <h1 class="description center-align post-title">一个经典的闭包面试题</h1>
                 </div>
             </div>
         </div>
@@ -311,7 +311,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-03-11
+                    2020-03-12
                 </div>
                 
 
@@ -328,14 +328,44 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>举个例子，一个小孩子将5个玩具从筐里拿出来，他是这么计数的：1，2，3，4，5 。而在编程领域，从数组里取值，是这么计数的：0，1，2，3，4。<br>是不是很神奇，那为何编程领域要这么做的？<br>通过查找资料和文章，发现原因如下：</p>
-<h4 id="原因1-历史原因，别人是这么干的"><a href="#原因1-历史原因，别人是这么干的" class="headerlink" title="原因1:历史原因，别人是这么干的"></a>原因1:历史原因，别人是这么干的</h4><p>C语言设计者用0开始计数数组下标，之后的Java，JavsScript等高级语言都模仿了C语言，或者说，为了在一定成都上减少C语言程序员学习Java的学习成本，因此继续沿用了从0开始计数的习惯。</p>
-<p>实际上，也有其他语言中数组并不是从0开始的，比如Matlab，甚至还有一些语言支持负数下标，比如Python。</p>
-<h4 id="原因2-底层为了性能"><a href="#原因2-底层为了性能" class="headerlink" title="原因2:底层为了性能"></a>原因2:底层为了性能</h4><p>从数组存储的内存模型上来看，“下标”最确切的定义应该是“偏移”。如果用a来表示数组的首地址，a[0]就是偏移为0的位置，也就是首地址，a[n]就表示偏移n个type_size 的位置，所以计算a[n]的内存地址只需要下边这个公式：</p>
-<pre><code>a[n]_address = base_address + n * type_size</code></pre><p>但是，如果数组从1开始计数，那么计算数组元素的a[n]的内存地址就会变成</p>
-<pre><code>a[n]_address = base_address + (n-1)*type_size</code></pre><p>对比两个公式，如果从1开始编号，每次随机访问数组就多了一次减法运算，对于CPU来说，就是多了一次减法指令。</p>
-<p>数组作为非常基础的数据结构，通过下标随机访问数组元素又是非常基础的编程操作，效率的优化要尽可能做到极致。所以为了减少一次减法操作，数组选择了从0开始编号，而不是从1开始。</p>
+                <p>Shut up, show me the code!!!</p>
+<pre><code>function showBiBao() {
+    for (var i = 0; i &lt; 5; i++) {
+      setTimeout( function timer() {
+          console.log(i);
+      }, 1000 );
+    }
+    console.log(i)
+}
+// 会输出什么
+showBiBao()</code></pre><p>会用到的两个知识点：</p>
+<ul>
+<li>闭包</li>
+<li>setTimeout</li>
+</ul>
+<p>提示：<br>这个代码是有bug的，怎么解决？</p>
+<h3 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h3><p>第一步：先找出bug原因<br>1.1：for循环5次，那么应该设定了5个定时器，这个没错<br>1.2：setTimeout等待for循环执行完成后立即调用定时器<br>1.3：setTimeout被放在了队列的数据结构中（for循环），等待上下文的代码运行后再执行定时器，此时运行定时器，变量i已经变成了5（此时5个定时器的i都是5），所以输出全是5</p>
+<p>第二步：怎么解决？<br>2.1：需要把每个定时器访问的变量独立起来，改变i的作用域<br>2.1：可以用闭包实现这个目的：在for循环里写一个闭包<br>2.3：show code</p>
+<pre><code>function showListNumber() {
+    for(var i = 0; i &lt; 5; i++) {
+        (function(i) {
+            setTimeout(function timerr() {
+                console.log(i)
+            }, 1000)
+        })(i)
+    }
+    console.log(i)
+}
+showListNumber()</code></pre><p>第三步：还能怎么做？<br>3.1：改变i的作用域就可以消除bug<br>3.2：可以用let声明一个仅对当前{}（块作用域）内有效的变量。</p>
+<pre><code>function useLetChange() {
+    for (let i = 0; i &lt; 5; i++) {
+      setTimeout( function timer() {
+          console.log(i);
+      }, 1000 );
+    }
+}
 
+useLetChange()</code></pre>
             </div>
             <hr/>
 
@@ -360,7 +390,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/302wanger/2020/03/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E7%9A%84%E6%95%B0%E7%BB%84%E4%B8%8B%E6%A0%87%E4%BB%8E0%E5%BC%80%E5%A7%8B/">https://github.com/302wanger/2020/03/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E7%9A%84%E6%95%B0%E7%BB%84%E4%B8%8B%E6%A0%87%E4%BB%8E0%E5%BC%80%E5%A7%8B/</a>
+                    <a href="https://github.com/302wanger/2020/03/12/%E4%B8%80%E4%B8%AA%E7%BB%8F%E5%85%B8%E7%9A%84%E9%97%AD%E5%8C%85%E9%9D%A2%E8%AF%95%E9%A2%98/">https://github.com/302wanger/2020/03/12/%E4%B8%80%E4%B8%AA%E7%BB%8F%E5%85%B8%E7%9A%84%E9%97%AD%E5%8C%85%E9%9D%A2%E8%AF%95%E9%A2%98/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -440,21 +470,21 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2020/03/12/leetcode-8-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0/">
+                <a href="/2020/03/12/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript-%E4%B8%AD%E5%8D%B7-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E7%B1%BB%E5%9E%8B/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="leetCode-08-字符串转换整数">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="你不知道的JavaScript(中卷)-第一章-类型">
                         
-                        <span class="card-title">leetCode-08-字符串转换整数</span>
+                        <span class="card-title">你不知道的JavaScript(中卷)-第一章-类型</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            一：题目请你来实现一个 atoi 函数，使其能将字符串转换成整数。
-首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。
-当我们寻找到的第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字组合起来，
+                            这一章到底在说什么？JavaScript中的类型有哪几种，及其它的一些用法。
+作者具体说了什么，怎么说的？什么是类型：对语言引擎和开发人员来说，类型是值的内部特征，它定义了值的行为，以使其区别于其他值。
+1.2 内置类型JavaScript
                         
                     </div>
                     <div class="publish-info">
@@ -479,29 +509,24 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/11/%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E9%98%B6%E4%B9%98/">
+                <a href="/2020/03/12/%E5%83%8F%E7%A8%8B%E5%BA%8F%E5%91%98%E4%B8%80%E6%A0%B7%E6%80%9D%E8%80%83/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="三种方法实现阶乘">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="像程序员一样思考">
                         
-                        <span class="card-title">三种方法实现阶乘</span>
+                        <span class="card-title">像程序员一样思考</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            三种实现阶乘的方法方法1
-function factorialize(num) {
-  // 如果num小于1，则终止
-  if (num&lt;0) {
-    return -1;
-  } else if (num === 0 || n
+                            这个纳米学位项目的一个主要目的，就是让你练就像程序员一样的思维方式。长期从事编程工作的人时常会说起，编程的思维方式如何帮助他们处理生活中的其他问题。那么，“像程序员一样思考”究竟是什么意思呢？在这个纳米学位中，我们将重点关注程序员必须始终应
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-12
                             </span>
                         <span class="publish-author">
                             

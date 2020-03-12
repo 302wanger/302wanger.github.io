@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="为什么编程语言的数组下标从0开始, 302wanger">
+    <meta name="keywords" content="你不知道的JavaScript(中卷)-第一章-类型, 302wanger">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>为什么编程语言的数组下标从0开始 | 302wanger</title>
+    <title>你不知道的JavaScript(中卷)-第一章-类型 | 302wanger</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -177,12 +177,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">为什么编程语言的数组下标从0开始</h1>
+                    <h1 class="description center-align post-title">你不知道的JavaScript(中卷)-第一章-类型</h1>
                 </div>
             </div>
         </div>
@@ -311,7 +311,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-03-11
+                    2020-03-12
                 </div>
                 
 
@@ -328,13 +328,46 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>举个例子，一个小孩子将5个玩具从筐里拿出来，他是这么计数的：1，2，3，4，5 。而在编程领域，从数组里取值，是这么计数的：0，1，2，3，4。<br>是不是很神奇，那为何编程领域要这么做的？<br>通过查找资料和文章，发现原因如下：</p>
-<h4 id="原因1-历史原因，别人是这么干的"><a href="#原因1-历史原因，别人是这么干的" class="headerlink" title="原因1:历史原因，别人是这么干的"></a>原因1:历史原因，别人是这么干的</h4><p>C语言设计者用0开始计数数组下标，之后的Java，JavsScript等高级语言都模仿了C语言，或者说，为了在一定成都上减少C语言程序员学习Java的学习成本，因此继续沿用了从0开始计数的习惯。</p>
-<p>实际上，也有其他语言中数组并不是从0开始的，比如Matlab，甚至还有一些语言支持负数下标，比如Python。</p>
-<h4 id="原因2-底层为了性能"><a href="#原因2-底层为了性能" class="headerlink" title="原因2:底层为了性能"></a>原因2:底层为了性能</h4><p>从数组存储的内存模型上来看，“下标”最确切的定义应该是“偏移”。如果用a来表示数组的首地址，a[0]就是偏移为0的位置，也就是首地址，a[n]就表示偏移n个type_size 的位置，所以计算a[n]的内存地址只需要下边这个公式：</p>
-<pre><code>a[n]_address = base_address + n * type_size</code></pre><p>但是，如果数组从1开始计数，那么计算数组元素的a[n]的内存地址就会变成</p>
-<pre><code>a[n]_address = base_address + (n-1)*type_size</code></pre><p>对比两个公式，如果从1开始编号，每次随机访问数组就多了一次减法运算，对于CPU来说，就是多了一次减法指令。</p>
-<p>数组作为非常基础的数据结构，通过下标随机访问数组元素又是非常基础的编程操作，效率的优化要尽可能做到极致。所以为了减少一次减法操作，数组选择了从0开始编号，而不是从1开始。</p>
+                <h2 id="这一章到底在说什么？"><a href="#这一章到底在说什么？" class="headerlink" title="这一章到底在说什么？"></a>这一章到底在说什么？</h2><p>JavaScript中的类型有哪几种，及其它的一些用法。</p>
+<h2 id="作者具体说了什么，怎么说的？"><a href="#作者具体说了什么，怎么说的？" class="headerlink" title="作者具体说了什么，怎么说的？"></a>作者具体说了什么，怎么说的？</h2><p><em>什么是类型：</em><br>对语言引擎和开发人员来说，类型是值的内部特征，它定义了值的行为，以使其区别于其他值。</p>
+<h3 id="1-2-内置类型"><a href="#1-2-内置类型" class="headerlink" title="1.2 内置类型"></a>1.2 内置类型</h3><p><em>JavaScript有七种内置类型：</em></p>
+<ol>
+<li>空值(null)</li>
+<li>未定义(undefined)</li>
+<li>布尔值(boolean)</li>
+<li>数字(number)</li>
+<li>字符串(string)</li>
+<li>对象(object)</li>
+<li>符号(symbol, ES6中新增)</li>
+</ol>
+<pre><code>typeof null // object
+typeof undefined // undefined
+typeof true  // boolean
+typeof 42  // number
+typeof “42” // string
+typeof {life: 42} // object</code></pre><h3 id="1-3-值和类型"><a href="#1-3-值和类型" class="headerlink" title="1.3: 值和类型"></a>1.3: 值和类型</h3><p>JavaScript中的变量是没有类型，只有值才有。变量可以随时持有任何类型的值。<br>皇额角度来理解，js不做“类型强制”；也就是说，语言引擎不要求变量总是持有与其初始值同类型的值。一个变量可以现在被赋予字符串类型，随后又被赋值为数字类型值。</p>
+<p><em>1.3.1: undefined和undeclared</em><br>已在作用域中声明但还没有赋值的变量，是undefined的，相反，还没有在作用域中声明过的变量，是undeclared 的。</p>
+<pre><code>Var a;
+a // undefined
+b // ReferencerError: b is not undefined</code></pre><p><em>1.3.2 typeof Undeclared</em></p>
+<p>typeof有自己的安全防范机制。</p>
+<pre><code>// 如果debug没有被声明
+
+// 这样会抛出错误
+if (debug) {
+    console.log(“debug is starting”)
+}
+
+// 这样是安全的
+if (typeof debug !== “undefined”) {
+    console.log(“debug is starting”)
+}</code></pre><h2 id="本章小结-小结"><a href="#本章小结-小结" class="headerlink" title="本章小结: 小结"></a>本章小结: 小结</h2><ol>
+<li>JavaScript有七种内置类型：null, undefined, boolean, number, string, object和symbol，可以使用typeof运算符来查看具体类型</li>
+<li>变量没有类型，但它们持有的值有类型。类型定义了值的行为特征。</li>
+<li>很多开发人员将undefined和undeclared混为一谈，但在JavaScript中它们是两码事。undefined是值的一种，undeclared则表示变量还没有被声明过。</li>
+<li>遗憾的是，JavaScript却将它们混为一谈，当我试图访问undeclared 变量时这样报错：ReferenceError: a is not defined,并且typeof对undefined和undeclared变量都返回”undefined”</li>
+<li>然而，通过typeof的安全防范机制（组织报错）来检查undeclared变量，有时是个不错的办法。</li>
+</ol>
 
             </div>
             <hr/>
@@ -360,7 +393,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/302wanger/2020/03/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E7%9A%84%E6%95%B0%E7%BB%84%E4%B8%8B%E6%A0%87%E4%BB%8E0%E5%BC%80%E5%A7%8B/">https://github.com/302wanger/2020/03/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E7%9A%84%E6%95%B0%E7%BB%84%E4%B8%8B%E6%A0%87%E4%BB%8E0%E5%BC%80%E5%A7%8B/</a>
+                    <a href="https://github.com/302wanger/2020/03/12/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript-%E4%B8%AD%E5%8D%B7-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E7%B1%BB%E5%9E%8B/">https://github.com/302wanger/2020/03/12/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript-%E4%B8%AD%E5%8D%B7-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E7%B1%BB%E5%9E%8B/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -440,21 +473,38 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2020/03/12/leetcode-8-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0/">
+                <a href="/2020/03/12/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript-%E4%B8%8A%E5%8D%B7-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AF%B9%E8%B1%A1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="leetCode-08-字符串转换整数">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="你不知道的JavaScript(上卷)-第三章-对象">
                         
-                        <span class="card-title">leetCode-08-字符串转换整数</span>
+                        <span class="card-title">你不知道的JavaScript(上卷)-第三章-对象</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            一：题目请你来实现一个 atoi 函数，使其能将字符串转换成整数。
-首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。
-当我们寻找到的第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字组合起来，
+                            一：这一章到底在说什么？详细介绍对象。
+
+语法
+类型
+内容
+可计算属性
+属性和方法
+数组
+复制对象
+属性描述符
+不变性
+[Get]
+[Put]
+Getter和Setter
+存在性
+
+
+遍历
+
+二：作者具体说了什么，怎么说的？3.1:语法创建
                         
                     </div>
                     <div class="publish-info">
@@ -479,29 +529,27 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/11/%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E9%98%B6%E4%B9%98/">
+                <a href="/2020/03/12/%E4%B8%80%E4%B8%AA%E7%BB%8F%E5%85%B8%E7%9A%84%E9%97%AD%E5%8C%85%E9%9D%A2%E8%AF%95%E9%A2%98/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="三种方法实现阶乘">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="一个经典的闭包面试题">
                         
-                        <span class="card-title">三种方法实现阶乘</span>
+                        <span class="card-title">一个经典的闭包面试题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            三种实现阶乘的方法方法1
-function factorialize(num) {
-  // 如果num小于1，则终止
-  if (num&lt;0) {
-    return -1;
-  } else if (num === 0 || n
+                            Shut up, show me the code!!!
+function showBiBao() {
+    for (var i = 0; i &lt; 5; i++) {
+      setTimeout( function time
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-12
                             </span>
                         <span class="publish-author">
                             
